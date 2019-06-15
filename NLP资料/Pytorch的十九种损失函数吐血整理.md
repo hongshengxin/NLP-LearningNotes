@@ -43,9 +43,14 @@ reduction-三个值，none: 不使用约简；mean:返回loss和的平均值； 
 ```
 
 * KL 散度损失 KLDivLoss
+
 相对熵又称KL散度,如果我们对于同一个随机变量 x 有两个单独的概率分布 P(x) 和 Q(x)，我们可以使用 KL 散度（Kullback-Leibler (KL) divergence）来衡量这两个分布的差异，这里 P(x) 表示样本的真实分布，Q(x) 表示我们计算出来的模型，我们怎么取衡量我们的模型和真实的样本分布之间的差异呢，使用KL散度：
 
-
+![KL](assets/KL.PNG)
+```
+torch.nn.KLDivLoss(reduction='mean')
+reduction-三个值，none: 不使用约简；mean:返回loss和的平均值； sum:返回loss的和。默认：mean。
+```
 
 
 
