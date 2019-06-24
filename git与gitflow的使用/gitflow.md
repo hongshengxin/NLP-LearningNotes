@@ -131,12 +131,12 @@ curl -L -O https://raw.github.com/nvie/gitflow/develop/contrib/gitflow-installer
 sudo bash gitflow-installer.sh
 ```
 2. 在pycharm中下载gitflow插件
-
-![](gitflow插件.PNG)
+     
+![](jpg/gitflow插件.PNG)
 
 3. 初始化
 
-![](initRepo.png)
+![](jpg/initRepo.png)
 
 这个地方有个大坑。正常情况下可以直接初始化的，但是由于我的电脑本身自带git的原因，
 导致git版本有问题，一直无法初始化。在终端只用这个方法即可

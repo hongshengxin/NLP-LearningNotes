@@ -64,7 +64,7 @@ def build_actree(wordlist):
 actree=build_actree(region_list)
 result_dict=classify(actree,text)
 ```
-![使用方法](2.PNG)
+![使用方法](JPG/2.PNG)
 
 
 

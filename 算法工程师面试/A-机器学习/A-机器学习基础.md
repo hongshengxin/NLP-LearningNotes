@@ -149,3 +149,37 @@ Index
 
 **贝叶斯公式**
   <div align="center"><a href="http://www.codecogs.com/eqnedit.php?latex=\fn_phv&space;\large&space;P(Y|X)=\frac{P(X|Y)*P(Y)}{P(X)}"><img src="../_assets/公式_20180817230314.png" height="" /></a></div>
+
+**[交叉熵损失](https://blog.csdn.net/weixin_37567451/article/details/80895309)**
+
+交叉熵是一个信息论中的概念，它原来是用来估算平均编码长度的。给定两个概率分布p和q，通过q来表示p的交叉熵为：
+
+![](https://img-blog.csdn.net/20180703114720894?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl8zNzU2NzQ1MQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
+注意，交叉熵刻画的是两个概率分布之间的距离，或可以说它刻画的是通过概率分布q来表达概率分布p的困难程度，p代表正确答案，q代表的是预测值，交叉熵越小，两个概率的分布约接近。
+
+**KL散度**
+
+对定义于随机变量X的状态空间上的概率分布P(x)和Q(x),可以用到相对相对熵来度量他们之间的差异，即有：
+![](https://img-blog.csdn.net/20151007094108222?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+
+* KL距离的几个用途：
+
+① 衡量两个概率分布的差异。
+
+② 衡量利用概率分布Q 拟合概率分布P 时的能量损耗，也就是说拟合以后丢失了多少的信息，可以参考前面曲线拟合的思想。
+
+③ 对①的另一种说法，就是衡量两个概率分布的相似度，在运动捕捉里面可以衡量未添加标签的运动与已添加标签的运动，进而进行运动的分类。
+
+
+
+百度百科解释的为什么KL距离不准确，不满足距离的概念：
+
+①KL散度不对称，即P到Q的距离，不等于Q到P的距离
+
+②KL散度不满足三角距离公式，两边之和大于第三边，两边之差小于第三边。
+从另一个角度也就可以发现，当P(x)和Q(x) 的相似度越高，KL距离越小。
+
+
+##相对熵=交叉熵-信息熵
+
