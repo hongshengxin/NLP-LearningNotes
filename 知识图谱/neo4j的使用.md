@@ -47,9 +47,9 @@ match path=(p:pig)-[r:夫妻]-({name:"乔治"}) return path   取出和乔治是
  # cpyther 方法导入[链接](https://blog.csdn.net/sushaning/article/details/86024935)
  
  
-* 亲自排坑啊~~~~
+亲自排坑啊~~~~
 
-第一种方法导入load-CSV
+* 第一种方法导入load-CSV
 
 ```
 1. 首先要将文件放到neo4j的import文件夹内
@@ -65,3 +65,46 @@ LOAD CSV  FROM
 create (a:actors{personId:line[0],name:line[1],type:line[2]})
 
 ```
+* [第二种方法用neo4j-import](https://blog.csdn.net/sinat_26917383/article/details/82424508)
+
+```
+使用条件
+graph.db需要清空；
+neo4j需要停掉；
+接受CSV导入，而且格式较为固定；
+试用场景:首次导入
+节点名字需要唯一
+```
+
+
+
+## [python 连接neo4j，实现增删改查](https://blog.csdn.net/hhtnan/article/details/81742103)
+
+
+```python
+# node_1_zhangfu_node_1 = Relationship(test_node_1, '丈夫', test_node_2)
+# node_1_zhangfu_node_1['count'] = 1
+# node_2_qizi_node_1 = Relationship(test_node_2, '妻子', test_node_1)
+# node_2_munv_node_1 = Relationship(test_node_2, '母女', test_node_3)
+#
+# node_2_qizi_node_1['count'] = 1
+#
+# graph.create(node_1_zhangfu_node_1)
+# graph.create(node_2_qizi_node_1)
+# graph.create(node_2_munv_node_1)
+# data1 = graph.run('MATCH(p:pig) return p').data()
+# print("data1 = ", data1, type(data1))
+# print(graph.nodes.match("pig",name="佩奇").first())
+
+
+```
+* [通过标签和属性简单查找：NodeMatcher(graph).match()](https://www.jianshu.com/p/da84712ef62b)
+```
+
+```
+
+##neo4j 建立多个数据库的方法
+
+在conf文件内，将默认的数据库文件修改为其他数据库文件即可
+
+
