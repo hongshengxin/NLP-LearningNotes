@@ -68,3 +68,18 @@ send "touch mmm.sh\r"
 expect eof
 EOF
 ```
+
+##自动登录服务器并在服务器上执行脚本，[实力踩坑踩出来的](https://www.jianshu.com/p/d4c1ac10204d?utm_campaign)
+
+```
+expect -c "
+spawn ssh kduser@172.18.8.35 \"
+cd /var/hongsheng_xin
+touch abcdefg.txt\"
+expect \"*assword:\"
+send \"Kingdee@2018\n\"
+expect eof"
+
+
+将要执行的脚本放在spawn后既可以，但是一定要让双引号的初始在spawn那一行
+```
