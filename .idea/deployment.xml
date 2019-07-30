@@ -9,7 +9,7 @@
           </mappings>
         </serverdata>
       </paths>
-      <paths name="kduser@172.18.8.35:22 (1)">
+      <paths name="xinhs@172.20.166.168:22">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />

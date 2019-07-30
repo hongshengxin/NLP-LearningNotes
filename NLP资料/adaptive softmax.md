@@ -1,0 +1,1 @@
+[自适应Softmax(Adaptive Softmax)](https://blog.eson.org/pub/e85b0673/)
