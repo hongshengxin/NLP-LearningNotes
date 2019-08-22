@@ -70,7 +70,28 @@ Transformer 网络具有学习更长期依赖性的潜力，但这种潜力往�
 
 基于这些改进，Transformer-XL在相关的数据集上都取得了很好的成绩。论文中表示，这是第一个在字符级和单词级建模方面比RNN结果更好的自注意力模型。
 
+```
+针对此问题，论文提出了一种新的位置编码方式。这种位置编码是每个注意力模块的一部分。它不会仅在第一层之前编码位置，而且会基于表征之间的相对距离而非绝对位置进行编码。从技术上讲，它对注意力头分数（Attention Head’s Score）的计算方式不再是简单的乘法（Qi⋅Kj），而是包括四个部分：
+
+内容权重——没有添加原始位置编码的原始分数。
+
+相对于当前内容的位置偏差（Qi）。该项使用正弦类函数来计算表征之间的相对距离（例如 i-j），用以替代当前表征的绝对位置。
+
+可学习的全局内容偏差——该模型添加了一个可学习的向量，用于调整其他表征内容（Kj）的重要性。
+
+可学习的全局偏差——另一个可学习向量，仅根据表征之间的距离调整重要性（例如，最后一个词可能比前一段中的词更重要）。
+```
 ## 三.源码解读
 
+```
+def _cache_mem(curr_out, prev_mem, mem_len=None):
+    if mem_len is None or prev_mem is None:
+        new_mem = curr_out
+    elif mem_len == 0:
+        return prev_mem
+    else:
+        new_mem = tf.concat([prev_mem, curr_out], 0)[- mem_len:]
 
-
+    return tf.stop_gradient(new_mem)
+这个之前的状态一定是stop_gradient的
+```

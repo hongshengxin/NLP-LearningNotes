@@ -61,3 +61,8 @@ saver.save(sess, 'my-model', global_step=1000) ==> filename: 'my-model-1000'
 
 ```
 
+## tf.estimator.Estimator类的用法[链接](https://www.cnblogs.com/zongfa/p/10149483.html)
+```
+
+```
+

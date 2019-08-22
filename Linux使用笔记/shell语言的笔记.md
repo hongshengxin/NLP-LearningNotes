@@ -139,6 +139,7 @@ fi
 
 判断文件夹是否存在
 if [ -d "/data/" ];then
+     
 echo "文件夹存在"
 else
 echo "文件夹不存在"
@@ -180,3 +181,9 @@ nohup bash enen.sh >> server.log 2>&1 &
 >> 代表能够追加显示   通过这个语句可以将日志信息完全显示到
 ```
 
+
+## 压缩
+
+```
+tar -zcvf /home/xahot.tar.gz /xahot 
+```
