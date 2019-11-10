@@ -3,6 +3,17 @@
 [看教程啊](http://www.data-master.net/83411704)
 
 
+###  ES方法的创建
+
+```
+
+
+
+```
+
+### ES 查询的使用
+
+
 ```
 
 from elasticsearch import Elasticsearch
