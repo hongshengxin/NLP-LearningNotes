@@ -182,6 +182,53 @@ import requests
 ```
 
 
+### 多个模型部署
+
+在现实情况里，一个任务可能需要用到多个模型，例如命名实体识别我训练了多个模型，对每个句子都需要汇总所有模型的结果，这时就需要用到多模型部署。在安装与测试一节中，我们介绍的是一个服务中只部署一个模型，这一节介绍下如何通过TF-Serving进行多模型部署。
+多模型部署时，无法在命令行中指定MODEL_NAME了，需要编写一个如下的json配置文件，这里取名为model.config。
+
+```
+model_config_list: {
+    config: {
+        name: "model1",
+        base_path: "/models/model1",
+        model_platform: "tensorflow",
+        model_version_policy: {
+           all: {}
+    },
+    config: {
+        name: "model2",
+        base_path: "/models/model2",
+        model_platform: "tensorflow",
+        model_version_policy: {
+           latest: {
+               num_versions: 1
+           }
+        }
+    },
+    config: {
+        name: "model3",
+        base_path: "/models/model3",
+        model_platform: "tensorflow",
+        model_version_policy: {
+           specific: {
+               versions: 1
+           }
+        }
+    }
+}
+
+```
+model_version_policy可以删除，默认是部署最新版本的模型，如果想要部署指定版本或者全部版本，需要单独设定。
+
+启动多模型服务命令时，需要将所有模型和配置文件逐个绑定，然后指定配置文件路径
+
+```
+
+
+sudo docker run -d -p 8500:8500 --mounttype=bind,source=/path/to/source_models/model1/,target=/models/model1 --mounttype=bind,source=/path/to/source_models/model2/,target=/models/model2 --mounttype=bind,source=/path/to/source_models/model3/,target=/models/model3 --mounttype=bind,source=/path/to/source_models/model.config,target=/models/model.config -t --name ner tensorflow/serving --model_config_file=/models/model.config
+```
+
 ### 相关教程连接
 
 [教程1](https://www.jianshu.com/p/d11a5c3dc757)
