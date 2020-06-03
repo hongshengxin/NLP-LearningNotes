@@ -70,8 +70,24 @@ print(I[:5])
 
 ##[更快的搜索 - IndexIVFFlat](https://blog.csdn.net/weixin_33711647/article/details/87003653)
 
-```
-
 
 ```
+nlist = 100
+k = 4
+quantizer = faiss.IndexFlatL2(d)  # the other index
+index = faiss.IndexIVFFlat(quantizer, d, nlist)
+assert not index.is_trained
+index.train(xb)
+assert index.is_trained
 
+index.add(xb)                  # add may be a bit slower as well
+D, I = index.search(xq, k)     # actual search
+print(I[-5:])                  # neighbors of the 5 last queries
+index.nprobe = 10              # default nprobe is 1, try a few more
+D, I = index.search(xq, k)
+print(I[-5:])                  # neighbors of the 5 last queries
+
+```
+##结论
+
+使用Faiss精确索引检索词向量比word2vec快5倍，使用IndexIVFFlat索引快接近十倍。
